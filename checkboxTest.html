@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+	<script>
+		$(function(){
+
+			alert('cals');
+			if($('.check-all').length >0){
+		    //console.log("checkbox all check test");
+
+		    $("table").on("click",".check-all",function() {
+		        $(this).closest("table").find("tbody input.check").prop("checked",this.checked).trigger("change");
+		    });
+		    $("table").on("click","tbody .check",function() {
+		        $(this).closest("table").find(".check-all").prop("checked",$(this).closest("table").find("tbody input.check:not(:checked)").length == 0)/*.trigger("change");*/
+		    });
+
+		  }
+
+		});
+	</script>
+   <style>
+		   	/* 체크박스 */
+		label.custom-checkbox input[type="checkbox"] { 
+		    opacity:0;
+		}
+		 
+		label.custom-checkbox input[type="checkbox"] ~ .helping-el{
+		    background-color: #FFFFFF;
+		    border: 1px solid #e3e3e3;
+		    display: inline-block;
+		    padding: 10px;
+		    position: relative;
+		    top: -2px;
+		    vertical-align: middle;
+		    left:-8px;
+		}
+		 
+		label.custom-checkbox input[type="checkbox"]:checked ~ .helping-el{ 
+		    border: 1px solid #e3e3e3;
+		    /*background-color: #ea5d4b;*/
+		}
+		 
+		label.custom-checkbox input[type="checkbox"]:checked ~ .helping-el:after {
+		    color: #ea5d4b;
+		    content: "\2714";
+		    font-size: 20px;
+		    font-weight: normal;
+		    left: 2px;
+		    position: absolute;
+		    top: -4px;
+		    transform: rotate(10deg);
+		}
+		.basic-table{width: 50px; text-align: center;border:1px solid #e3e3e3;margin:30px auto;}
+		.basic-table td ,th{border:1px solid #e3e3e3;padding-bottom: 20px;padding-left: 15px;}
+		.basic-table th{background-color: #e3e3e3;}
+   </style>
+</head>
+<body>
+
+<table class="basic-table">
+	<tr>
+		<th>
+			<label class="custom-checkbox"> 
+                <input type="checkbox" class="check-all"/>
+                <span class="helping-el"></span> 
+                <span class="label-text"></span>
+            </label>
+		</th>
+	</tr>
+	<tr>
+		<td>
+			<label class="custom-checkbox"> 
+                <input type="checkbox" class="check"  />
+                <span class="helping-el"></span> 
+                <span class="label-text"></span>
+            </label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label class="custom-checkbox"> 
+                <input type="checkbox" class="check"  />
+                <span class="helping-el"></span> 
+                <span class="label-text"></span>
+            </label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label class="custom-checkbox"> 
+                <input type="checkbox" class="check"  />
+                <span class="helping-el"></span> 
+                <span class="label-text"></span>
+            </label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label class="custom-checkbox"> 
+                <input type="checkbox" class="check"  />
+                <span class="helping-el"></span> 
+                <span class="label-text"></span>
+            </label>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
