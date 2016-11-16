@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.6, minimum-scale=0.6, maximum-scale=1.2, user-scalable=yes, target-densitydpi=device-dpi">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>c-node</title>
+<style>
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+	header{margin-left: 20%;  text-align: left;background-color: #311B92;color: #fff; padding: 10px; font-size:1.5rem;line-height: 150%;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);}
+	.head-title{margin-left: 20px;}
+	.nav-title{width: 100%; text-align: center; padding: 20px 0px 16px 0px; background-color: #512DA8;color: #fff;}
+	.nav-bar li{padding: 15px 0px 15px 22px; list-style: none; font-weight: 700;color: #212121;border: 1px solid #e3e3e3;}
+	.nav-bar li:hover{background-color: #D1C4E9;}
+	.selected{background-color: #D1C4E9;}
+	.menu-bar{float:left;width: 20%;min-height: 500px;background-color: #EDE7F6}
+	.container{float:left;width: 60%;min-height: 200px;}
+	.content{padding: 10px;}
+	.footer{display:inline-block; clear: both; width: 100%; text-align: center;margin-top: 30px;}
+	.input-text{padding:0 12px;width:300px;height:35px;line-height:32px;text-align:left;font-size:15px;color:#888;border:1px solid #e4e4e4;background:#f5f5f5;display:inline-block;}
+	.input-wrap{display:inline-block;position: relative;vertical-align: top; cursor: pointer;}
+	.input-file{opacity: 0;position: absolute;top: 0px;left: 0px; width: 20px;height: 20px;z-index: 200; cursor: pointer;font-size:11px;}
+	.input-file::before{position: absolute;top: 0px;left: 0px; width: 20px;height: 20px; z-index: 200; cursor: pointer;display:block;}
+	.input-img{position: absolute;top:0px;left: 0px; cursor: pointer;z-index: 100;}
+	.box{width: 500px;height: 500px;background-color: #EC407A;margin:50px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26); position: relative;}
+	.box span{position: absolute;top: 47%;left: 47%;color: #fff;font-weight: 700;font-size: 2rem;}
+	.footer{border-top: 1px solid #e3e3e3;padding-top: 20px;}
+	.quick_select{position: fixed;left:50%;top:12%;margin-left: 100px;}
+	.quick_select li{padding: 10px; list-style: none;text-align: center;font-weight: 500;font-size: 1rem;}
+	.quick_select li:hover{background-color:#EC407A;color: #fff;}
+	.quick_select ul{border-radius: 5px;box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);}
+	.active{background-color:#EC407A;color: #fff;}
+</style>
+</head>
+<body>
+<div class="menu-bar">
+	<nav>
+		<div class="nav-title">
+			Menu
+		</div>
+		<ul class="nav-bar">
+			<li class="selected">Navgation-bar</li>
+			<li>Check-box</li>
+			<li>Input-fileDemo</li>
+		</ul>
+	</nav>
+</div>
+<header class="head quick-menu-title">
+	<div class="head-title">
+		<span>C - node</span>
+	</div>
+</header>
+<div class="container">
+	<div class="content">
+		<div class="box quick-menu-title"><span>1</span></div>
+		<div class="box quick-menu-title"><span>2</span></div>
+		<div class="box quick-menu-title"><span>3</span></div>
+		<div class="box quick-menu-title"><span>4</span></div>
+	</div>
+</div>
+<div class="footer">
+	<footer>
+		<h3>Copyright</h3>
+		<p>2016-11-16 박상후</p>
+	</footer>
+</div>
+
+<div class="quick_select">
+	<ul>
+		<li style="border-bottom: 1px solid #e3e3e3;">TOP</li>
+		<li>first-box</li>
+		<li>second-box</li>
+		<li>third-box</li>
+		<li>fourth-box</li>
+	</ul>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+<script> 
+	$(function(){
+		
+		var quickMenu = $(".quick_select");
+	    if(quickMenu.length > 0) {
+	        var quickBtn = quickMenu.find("li").on("click",function() {
+	            var getPos = $(".quick-menu-title").eq($(this).index()).offset().top - 30;
+	            $("html,body").stop(true,true).animate({ scrollTop:getPos }, 200);
+	            return false;
+	        });
+	        function quickScroll() {
+	            var getTop = $(window).scrollTop();
+
+	            if(getTop > 146) {
+	                if(!quickMenu.hasClass("fixed")) quickMenu.addClass("fixed");
+	            }
+	            else {
+	                if(quickMenu.hasClass("fixed")) quickMenu.removeClass("fixed");
+	            }
+	            
+	            var getPos = 0;
+	            $(".quick-menu-title").each(function(i) {
+	                var pagePos = $(this).offset().top - 50;
+	                if(getTop > pagePos) {
+	                    getPos = i;
+	                }
+	            });
+	            quickBtn.removeClass("active").eq(getPos).addClass("active");
+	        }
+	        var quickInterval = null;
+	        $(window).on("scroll",function() {
+	            clearTimeout(quickInterval);
+	            quickInterval = setTimeout(function() { quickScroll(); },100);
+	        });
+	        quickScroll();
+	        
+        
+    }
+
+	});
+
+</script>
+</body>
+</html>
