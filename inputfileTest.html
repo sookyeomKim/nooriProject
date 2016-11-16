@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.6, minimum-scale=0.6, maximum-scale=1.2, user-scalable=yes, target-densitydpi=device-dpi">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>누리미디어</title>
+<style>
+	.head{width: 100%;text-align: center;background-color: #777777;color: #fff; padding: 10px;}
+	.menu-bar{float:left;width: 20%;min-height: 200px;background-color: #e3e3e3;}
+	.container{float:left;width: 80%;min-height: 200px;}
+	.content{padding: 10px;}
+	.footer{display:inline-block; clear: both; width: 100%; text-align: center;margin-top: 30px;}
+	.input-text{padding:0 12px;width:300px;height:35px;line-height:32px;text-align:left;font-size:15px;color:#888;border:1px solid #e4e4e4;background:#f5f5f5;display:inline-block;}
+	.input-wrap{display:inline-block;position: relative;vertical-align: top; cursor: pointer;}
+	.input-file{opacity: 0;position: absolute;top: 0px;left: 0px; width: 20px;height: 20px;z-index: 200; cursor: pointer;font-size:11px;}
+	.input-file::before{position: absolute;top: 0px;left: 0px; width: 20px;height: 20px; z-index: 200; cursor: pointer;display:block;}
+	.input-img{position: absolute;top:0px;left: 0px; cursor: pointer;z-index: 100;}
+</style>
+</head>
+<body>
+<div class="head">
+	<h2>누리미디어 예제</h2>
+</div>
+<div class="menu-bar">
+</div>
+<div class="container">
+	<div class="content">
+		<div class="file-box">
+			<input type="text" title="file" readonly="readonly" class="input-text"/>
+			<div class="input-wrap">
+				<input type="file" class="input-file"/>
+				<div class="input-img"><img src="down-btn.png"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="footer">
+	<footer>
+		<h3>Copyright</h3>
+		<p>2016-11-16 박상후</p>
+	</footer>
+</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+<script> 
+	$(function(){
+		$("body").on("change",".file-box .input-file",function() {
+        var getFile = $(this).val().split("\\").pop();
+        $(this).closest(".file-box").find(".input-text").val(getFile);
+    });
+
+	});
+
+</script>
+</body>
+</html>
